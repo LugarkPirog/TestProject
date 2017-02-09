@@ -1,22 +1,17 @@
 #include "stdafx.h"
-#include <initializer_list>
 using namespace std;
 
 class Matrix {
-public:
 	double **a;
- 
+public:
 	const int m, n;
 	Matrix(int mm = 2, int nn = 2) : m(mm), n(nn) {
-		cout << sizeof(a) << endl;
 		a = new double *[m];
-		cout << sizeof(a) << endl;
-
 		for (int i = 0; i < m; i++) {
 			a[i] = new double [n];
 		}
 	}
-	virtual ~Matrix() {
+	~Matrix() {
 		for (int i = 0; i < m; i++) {
 			delete[] a[i];
 		}
@@ -28,7 +23,6 @@ public:
 				printf("a[%d][%d] = ", i, j);
 				cin >> a[i][j];
 			}
-			//cout << endl;
 		}
 	}
 	Matrix operator+(Matrix mt) {
@@ -56,16 +50,24 @@ public:
 	void operator=(initializer_list <double> s) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				a[i][j] = *s.begin() + n*i +j;
+				a[i][j] = *(s.begin() + n*i +j);
 			}
 		}
 	}
 	Matrix operator*(Matrix mt) {
+		Matrix res(m, mt.n);
 		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				a[i][j] += mt.a[i][j];
+			for (int j = 0; j < mt.n; j++) { 
+				double sum = 0;
+				for (int k = 0; k < n; k++) {
+					sum += (a[i][k] * mt.a[k][j]);
+				}
+				res.a[i][j] = sum;
+				cout << res.a[i][j] << " ";
 			}
+			cout << endl;
 		}
+		return res;
 	}
 	void print() {
 		for (int i = 0; i < m; i++) {
@@ -77,19 +79,3 @@ public:
 	}
 };
 
-
-int main() {
-	Matrix am(3, 2), bm(2, 2);
-	cout << sizeof(am) << endl << sizeof(double);
-	system("pause");
-	am.fill();
-	bm = {
-		1,
-		2,
-		3
-	};
-	bm.print();
-	system("pause");
-	
-	return 0;
-}

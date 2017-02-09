@@ -1,12 +1,14 @@
 // TestProject.cpp: определяет точку входа для консольного приложения.
 //
 #include "stdafx.h"
-
+#include "matrixCalc.cpp"
 using namespace std;
 
+//extern class Matrix;
 double avg(int *a);
-/*int main()
-{
+string tmp;
+int main()
+{/*
 	int X[3] = { 60, 50, 75 };
 	int Y[3] = { 10, 7, 12 };
 	double beta0, beta1, sum1 = 0, sum2 = 0;
@@ -19,12 +21,46 @@ double avg(int *a);
 	beta1 = sum1 / sum2;
 	beta0 = avg(Y) - avg(X)*beta1;
 	printf("%f\n%f", beta0, beta1);
-	/*auto t = [](int x) -> double {return sin(x); };
-	printf("%d", t);
+	/*auto t = [](int x) -> double {return sin(x); }; 
+
+	printf("%d", t); */
+
+	/*for (;;) {
+		if (getline(cin, tmp)) {
+			if (tmp == "exit") 
+				return 0;
+			else if(tmp == "mult"){ 
+				cout << "mult\n";
+
+			}
+			else if (tmp == "reverse") {
+				cout << "reverse";
+			}
+			else if (tmp == "stop_please") {
+				break;
+			}
+			cout << endl;
+		};
+	}*/
+	Matrix am(3, 2), bm(2, 4);
+	am.fill();
+	bm = {
+		1, 2,
+		2, 3, 4,
+		3, 6, 7
+	};
+	bm.print();
+	system("pause");
+	Matrix cm(am.m, bm.n);
+	cm = am*bm;
+	system("pause");
+	(am*bm).print();
+	cout << endl;
+	cm.print();
 	system("pause");
     return 0;
 }
-*/
+
 double avg(int a[]) {
 	double avg_val = 0;
 	int n = 0;
@@ -33,3 +69,8 @@ double avg(int a[]) {
 	}
 	return avg_val / 3;
 };
+
+Matrix get_sum() {
+	
+	return 0;
+}
