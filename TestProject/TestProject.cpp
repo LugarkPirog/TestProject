@@ -23,16 +23,30 @@ int main()
 	/*auto t = [](int x) -> double {return sin(x); }; 
 
 	printf("%d", t); */
-
+	cout << "Enter the command: ";
 	for (;;) {
 		if (getline(cin, tmp)) {
 			if (tmp == "exit") 
 				return 0;
 			else if(tmp == "mult"){ 
-				cout << "mult\n";
+				int row1, row2, col1, col2;
+				cout << "Enter 1st matrix's number of rows and columns: ";
+				cin >> row1 >> col1;
+				cout << "Enter 2nd matrix's number of rows and columns: ";
+				cin >> row2 >> col2;
+				if (col1 != row2){
+					cout << "No man can just multiply those matrix you entered.\n";
+					continue;
+				}
+				Matrix a(row1, col1), b(row2, col2);
+				a.fill();
+				b.fill();
+				cout << "The result:\n";
+				(a*b).print();
+				cout << endl << "Enter the command: ";
 
 			}
-			else if (tmp == "transpon") {
+			else if (tmp == "transp") {
 				int rowcol;
 				cout << "Enter matrix's size: ";
 				cin >> rowcol;
@@ -40,21 +54,34 @@ int main()
 				grr.fill();
 				grr.T();
 				grr.print();
+				cout << endl << "Enter the command: ";
+
 			}
 			else if (tmp == "stop") {
 				break;
 			}
-			cout << endl;
+			else if (tmp == "sum") {
+				int row1, col1;
+				cout << "Enter matrix's number of rows and columns: ";
+				cin >> row1 >> col1;
+				
+				Matrix a(row1, col1), b(row1, col1);
+				a.fill();
+				b.fill();
+				cout << "The result:\n";
+				(a+b).print();
+				cout << endl << "Enter the command: ";
+			}
+			else if (tmp == "help") {
+				cout << "transp - transposing the rectangle matrix" << endl;
+				cout << "mult - multiplying two matrixes" << endl;
+				cout << "stop - exit the menu (may cause unpredictible stuff)" << endl;
+				cout << "exit - switching the programm off" << endl;
+				cout << "sum - summing two matrixes" << endl;
+			}
 		};
 	}
-	Matrix am(3, 1), bm(1, 3);
-	am.fill();
-	bm.fill();
 	
-	Matrix cm(3,3);
-	cm = am*bm;
-	cm.print();
-	cout << endl;
 	system("pause");
     return 0;
 }
