@@ -43,18 +43,16 @@ int main()
 	}*/
 	Matrix am(3, 1), bm(1, 3);
 	am.fill();
-	bm = {
-		1, 2,
-		2, 3, 4,
-		3, 6, 7
-	};
+	bm.fill();
 	bm.print();
 	/*system("pause");
 	Matrix cm(3,4);
 	system("pause");
 	cm = am;
 	system("pause");*/
-	(am*bm).print();
+	Matrix cm(3,1);
+	cm = am;
+	cm.print();
 	cout << endl;
 	//cm.print();
 	system("pause");
