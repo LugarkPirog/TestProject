@@ -4,7 +4,6 @@
 #include "matrixCalc.cpp"
 using namespace std;
 
-//extern class Matrix;
 double avg(int *a);
 string tmp;
 int main()
@@ -42,7 +41,7 @@ int main()
 			cout << endl;
 		};
 	}*/
-	Matrix am(3, 2), bm(2, 4);
+	Matrix am(3, 1), bm(1, 3);
 	am.fill();
 	bm = {
 		1, 2,
@@ -50,13 +49,14 @@ int main()
 		3, 6, 7
 	};
 	bm.print();
+	/*system("pause");
+	Matrix cm(3,4);
 	system("pause");
-	Matrix cm(am.m, bm.n);
-	cm = am*bm;
-	system("pause");
+	cm = am;
+	system("pause");*/
 	(am*bm).print();
 	cout << endl;
-	cm.print();
+	//cm.print();
 	system("pause");
     return 0;
 }

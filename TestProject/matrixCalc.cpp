@@ -2,8 +2,8 @@
 using namespace std;
 
 class Matrix {
-	double **a;
 public:
+	double **a;
 	const int m, n;
 	Matrix(int mm = 2, int nn = 2) : m(mm), n(nn) {
 		a = new double *[m];
@@ -25,7 +25,7 @@ public:
 			}
 		}
 	}
-	Matrix operator+(Matrix mt) {
+	Matrix operator+(Matrix &mt) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] += mt.a[i][j];
@@ -33,14 +33,14 @@ public:
 		};
 		return *this;
 	}
-	Matrix operator-(Matrix mt) {
+	Matrix operator-(Matrix &mt) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] -= mt.a[i][j];
 			}
 		}
 	}
-	void operator=(Matrix mt) {
+	void operator=(Matrix &mt) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] = mt.a[i][j];
@@ -54,7 +54,7 @@ public:
 			}
 		}
 	}
-	Matrix operator*(Matrix mt) {
+	Matrix operator*(Matrix &mt) {
 		Matrix res(m, mt.n);
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < mt.n; j++) { 
@@ -72,7 +72,7 @@ public:
 	void print() {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				cout << a[i][j] << " ";
+				printf("a[%d][%d] = %f", i, j, a[i][j]);
 			}
 			cout << endl;
 		}
