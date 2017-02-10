@@ -24,7 +24,7 @@ int main()
 
 	printf("%d", t); */
 
-	/*for (;;) {
+	for (;;) {
 		if (getline(cin, tmp)) {
 			if (tmp == "exit") 
 				return 0;
@@ -32,29 +32,29 @@ int main()
 				cout << "mult\n";
 
 			}
-			else if (tmp == "reverse") {
-				cout << "reverse";
+			else if (tmp == "transpon") {
+				int rowcol;
+				cout << "Enter matrix's size: ";
+				cin >> rowcol;
+				Matrix grr(rowcol, rowcol);
+				grr.fill();
+				grr.T();
+				grr.print();
 			}
-			else if (tmp == "stop_please") {
+			else if (tmp == "stop") {
 				break;
 			}
 			cout << endl;
 		};
-	}*/
+	}
 	Matrix am(3, 1), bm(1, 3);
 	am.fill();
 	bm.fill();
-	bm.print();
-	/*system("pause");
-	Matrix cm(3,4);
-	system("pause");
-	cm = am;
-	system("pause");*/
-	Matrix cm(3,1);
-	cm = am;
+	
+	Matrix cm(3,3);
+	cm = am*bm;
 	cm.print();
 	cout << endl;
-	//cm.print();
 	system("pause");
     return 0;
 }

@@ -29,11 +29,13 @@ public:
 		delete[] a;
 	}
 	void fill() {
+		cout << "Enter the matrix " << this << ": \n";
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				printf("a[%d][%d] = ", i, j);
+				cout << " a[" << i << "][" << j << "] = ";
 				cin >> a[i][j];
 			}
+			cout << endl;
 		}
 	}
 	Matrix operator+(Matrix mt) {
@@ -74,19 +76,31 @@ public:
 					sum += (a[i][k] * mt.a[k][j]);
 				}
 				res.a[i][j] = sum;
-				//cout << res.a[i][j] << " ";
 			}
-			cout << endl;
 		}
 		return res;
 	}
 	void print() {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				printf("a[%d][%d] = %f", i, j, a[i][j]);
+				//printf("a[%i][%i] = %5.3f", i, j, a[i][j]);
+				cout << " a[" << i << "][" << j << "] = " << a[i][j];
 			}
 			cout << endl;
 		}
+	}
+	void T() {
+		if (m == n) {
+			double tmp = 0;
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; (j < n) & (j != i); j++) {
+					tmp = a[i][j];
+					a[i][j] = a[j][i];
+					a[j][i] = tmp;
+				}
+			}
+		}
+		else cout << "The matrix is not rectangular.\n";
 	}
 };
 
