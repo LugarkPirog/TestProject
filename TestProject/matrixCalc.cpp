@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 using namespace std;
 
 class Matrix {
@@ -34,7 +35,6 @@ public:
 			for (int j = 0; j < n; j++) {
 				cin >> a[i][j];
 			}
-			cout << endl;
 		}
 	}
 	Matrix operator+(Matrix mt) {
@@ -51,6 +51,7 @@ public:
 				a[i][j] -= mt.a[i][j];
 			}
 		}
+		return *this;
 	}
 	void operator=(Matrix mt) {
 		for (int i = 0; i < m; i++) {
@@ -59,13 +60,13 @@ public:
 			}
 		}
 	}
-	/*void operator=(initializer_list <double> s) {
+	void operator=(initializer_list <double> s) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] = *(s.begin() + n*i +j);
 			}
 		}
-	}*/
+	}
 	Matrix operator*(Matrix mt) {
 		Matrix res(m, mt.n);
 		for (int i = 0; i < m; i++) {
@@ -96,5 +97,44 @@ public:
 			}
 		return tmp;
 		}
+	double det() {
+		double deter = 0;
+		double tmpsum = 1;
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					tmpsum *= a[j][(j + i) % n];
+				}
+				deter += tmpsum;
+				tmpsum = 1;
+			}
+			for (int i = n - 1; i >= 0; i--) {
+				for (int j = 0; j < n; j++) {
+					tmpsum *= a[j][(n + i - j) % n];
+				}
+				deter -= tmpsum;
+				tmpsum = 1;
+			}
+			return deter;
+	}
+	//Matrix reverse();
 };
 
+/*Matrix E(int m) {
+	Matrix e(m, m);
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < m; j++) {
+			if (i == j) e.a[i][j] = 1;
+			else e.a[i][j] = 0;
+		}
+	}
+	return e;
+};*/
+/*Matrix reverse() {
+	if (m != n) {
+		cout << "You can only reverse a rectangular matrix.\n"; return 0;
+	};
+	Matrix e, tmp;
+	e = E(m);
+	tmp = *this;
+	tmp.print();
+}*/
