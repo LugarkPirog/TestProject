@@ -29,10 +29,9 @@ public:
 		delete[] a;
 	}
 	void fill() {
-		cout << "Enter the matrix " << this << ": \n";
+		cout << "Enter the matrix: \n";
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				cout << " a[" << i << "][" << j << "] = ";
 				cin >> a[i][j];
 			}
 			cout << endl;
@@ -60,13 +59,13 @@ public:
 			}
 		}
 	}
-	void operator=(initializer_list <double> s) {
+	/*void operator=(initializer_list <double> s) {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] = *(s.begin() + n*i +j);
 			}
 		}
-	}
+	}*/
 	Matrix operator*(Matrix mt) {
 		Matrix res(m, mt.n);
 		for (int i = 0; i < m; i++) {
@@ -83,23 +82,19 @@ public:
 	void print() {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				cout << " a[" << i << "][" << j << "] = " << a[i][j];
+				cout << a[i][j] << " ";
 			}
 			cout << endl;
 		}
 	}
-	void T() {
-		if (m == n) {
-			double tmp = 0;
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; (j < n) & (j != i); j++) {
-					tmp = a[i][j];
-					a[i][j] = a[j][i];
-					a[j][i] = tmp;
+	Matrix T() {
+		Matrix tmp(n, m);
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				tmp.a[j][i] = a[i][j];
 				}
 			}
+		return tmp;
 		}
-		else cout << "The matrix is not rectangular.\n";
-	}
 };
 

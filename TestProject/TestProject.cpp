@@ -35,7 +35,7 @@ int main()
 				cout << "Enter 2nd matrix's number of rows and columns: ";
 				cin >> row2 >> col2;
 				if (col1 != row2){
-					cout << "No man can just multiply those matrix you entered.\n";
+					cout << "No man can just multiply those matrices you entered.\n";
 					continue;
 				}
 				Matrix a(row1, col1), b(row2, col2);
@@ -47,13 +47,12 @@ int main()
 
 			}
 			else if (tmp == "transp") {
-				int rowcol;
-				cout << "Enter matrix's size: ";
-				cin >> rowcol;
-				Matrix grr(rowcol, rowcol);
+				int row, col;
+				cout << "Enter matrix's rows and columns: ";
+				cin >> row >> col;
+				Matrix grr(row, col);
 				grr.fill();
-				grr.T();
-				grr.print();
+				grr.T().print();
 				cout << endl << "Enter the command: ";
 
 			}
