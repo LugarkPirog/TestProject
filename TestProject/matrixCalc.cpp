@@ -116,25 +116,26 @@ public:
 			}
 			return deter;
 	}
-	//Matrix reverse();
+	Matrix reverse();
 };
 
-/*Matrix E(int m) {
-	Matrix e(m, m);
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < m; j++) {
-			if (i == j) e.a[i][j] = 1;
-			else e.a[i][j] = 0;
+double alt(Matrix r, int a, int b) {
+	Matrix tmp(r.m - 1, r.n - 1);
+	for (int i = 0; i < r.m && i !=a; i++) {
+		for (int j = 0; j < r.n && j != b; j++) {
+			tmp.a[i][j] = r.a[i][j];
 		}
 	}
-	return e;
-};*/
-/*Matrix reverse() {
-	if (m != n) {
-		cout << "You can only reverse a rectangular matrix.\n"; return 0;
-	};
-	Matrix e, tmp;
-	e = E(m);
-	tmp = *this;
-	tmp.print();
-}*/
+	return tmp.det();
+}
+
+Matrix Matrix :: reverse() {
+	Matrix res(m, n);
+	double detr = this->det();
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			res.a[j][i] = alt(*this, i, j) / detr;
+		}
+	}
+	return res;
+};

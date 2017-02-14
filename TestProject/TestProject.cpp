@@ -72,12 +72,15 @@ int main()
 				(a+b).print();
 				cout << endl << "Enter the command: ";
 			}
-			/*else if (tmp == "rev") {
+			else if (tmp == "rev") {
+				cout << "Enter the matrix size: ";
 				int m;
 				cin >> m;
 				Matrix r(m, m);
-				//r.reverse();
-			}*/
+				r.fill();
+				r.reverse();
+				r.print();
+			}
 			else if (tmp == "det") {
 				int m;
 				cout << "Enter matrix's size: ";
