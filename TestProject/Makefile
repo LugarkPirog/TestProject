@@ -1,8 +1,5 @@
-all: matrixCalc.o TestProject.o
-	g++ matrixCalc.o TestProject.o
-
-matrixCalc.o: matrixCalc.cpp
-	g++ -c matrixCalc.cpp
+all: TestProject.exe
+	g++ TestProject.o
 
 TestProject.o: TestProject.cpp
 	g++ -c TestProject.cpp

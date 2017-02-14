@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#pragma once
 using namespace std;
 
 class Matrix {
@@ -98,43 +98,54 @@ public:
 		return tmp;
 		}
 	double det() {
-		double deter = 0;
-		double tmpsum = 1;
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					tmpsum *= a[j][(j + i) % n];
-				}
-				deter += tmpsum;
-				tmpsum = 1;
+		if (m == n) {
+			double deter = 0;
+			if (m == 2) {
+				deter = a[0][0] * a[1][1] - a[0][1] * a[1][0];
 			}
-			for (int i = n - 1; i >= 0; i--) {
-				for (int j = 0; j < n; j++) {
-					tmpsum *= a[j][(n + i - j) % n];
+			else {
+				double tmpsum = 1;
+				for (int i = 0; i < n; i++) {
+					for (int j = 0; j < n; j++) {
+						tmpsum *= a[j][(j + i) % n];
+					}
+					deter += tmpsum;
+					tmpsum = 1;
 				}
-				deter -= tmpsum;
-				tmpsum = 1;
+				for (int i = n - 1; i >= 0; i--) {
+					for (int j = 0; j < n; j++) {
+						tmpsum *= a[j][(n + i - j) % n];
+					}
+					deter -= tmpsum;
+					tmpsum = 1;
+				}
 			}
 			return deter;
+		}
+		else return 0;
 	}
-	Matrix reverse();
+	Matrix rvrse();
 };
 
 double alt(Matrix r, int a, int b) {
 	Matrix tmp(r.m - 1, r.n - 1);
+	int k = 0;
 	for (int i = 0; i < r.m && i !=a; i++) {
 		for (int j = 0; j < r.n && j != b; j++) {
-			tmp.a[i][j] = r.a[i][j];
+			tmp.a[k / (r.m - 1)][k % (r.n - 1)] = r.a[i][j];
+			k++;
 		}
 	}
 	return tmp.det();
 }
 
-Matrix Matrix :: reverse() {
+Matrix Matrix :: rvrse() {
 	Matrix res(m, n);
 	double detr = this->det();
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			res.a[j][i] = alt(*this, i, j) / detr;
+			cout << res.a[j][i] << " ";
 		}
 	}
 	return res;

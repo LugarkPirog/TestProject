@@ -78,7 +78,7 @@ int main()
 				cin >> m;
 				Matrix r(m, m);
 				r.fill();
-				r.reverse();
+				r.rvrse();
 				r.print();
 			}
 			else if (tmp == "det") {

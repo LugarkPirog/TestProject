@@ -27,15 +27,15 @@
     <ClInclude Include="Makefile">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="matrixCalc.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="TestProject.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="matrixCalc.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
