@@ -78,8 +78,7 @@ int main()
 				cin >> m;
 				Matrix r(m, m);
 				r.fill();
-				r.rvrse();
-				r.print();
+				r.rvrse().print();
 			}
 			else if (tmp == "det") {
 				int m;

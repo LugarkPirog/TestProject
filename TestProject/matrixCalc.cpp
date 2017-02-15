@@ -129,14 +129,28 @@ public:
 
 double alt(Matrix r, int a, int b) {
 	Matrix tmp(r.m - 1, r.n - 1);
+	double *temp = new double [r.m*r.n];
 	int k = 0;
-	for (int i = 0; i < r.m && i !=a; i++) {
-		for (int j = 0; j < r.n && j != b; j++) {
-			tmp.a[k / (r.m - 1)][k % (r.n - 1)] = r.a[i][j];
+	for (int i = 0; i < r.m; i++) {
+		for (int j = 0; j < r.n; j++) {
+			if (i == a || j == b) { continue; };
+			*(temp + k) = r.a[i][j];
 			k++;
+			//cout << r.a[i][j] << " ";
+		}
+		//cout << endl;
+	}
+	//cout << k << endl;
+	for (int i = 0; i < r.m - 1; i++) {
+		for (int j = 0; j < r.n - 1; j++) {
+			tmp.a[j][i] = temp[(r.n-1)*i + j];
 		}
 	}
-	return tmp.det();
+	delete[] temp;
+	if ((a + b) % 2) {
+		return -tmp.det();
+	}
+	else return tmp.det();
 }
 
 Matrix Matrix :: rvrse() {
@@ -145,7 +159,7 @@ Matrix Matrix :: rvrse() {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			res.a[j][i] = alt(*this, i, j) / detr;
-			cout << res.a[j][i] << " ";
+			//cout << res.a[j][i] << " ";
 		}
 	}
 	return res;
