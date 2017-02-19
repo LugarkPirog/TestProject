@@ -125,38 +125,44 @@ public:
 		else return 0;
 	}
 	Matrix rvrse();
+	double alt(int, int);
 };
 
-double alt(Matrix r, int a, int b) {
-	Matrix tmp(r.m - 1, r.n - 1);
-	double *temp = new double[r.m*r.n];
-	int k = 0;
-	for (int i = 0; i < r.m; i++) {
-		for (int j = 0; j < r.n; j++) {
-			if (i == a || j == b) { continue; };
-			*(temp + k) = r.a[i][j];
-			k++;
+double Matrix::alt(int z, int x) {
+	if (n == 2) {
+		if (z != x) {
+			return a[1 - z][1 - x];
 		}
+		else return -a[1 - z][1 - x];
 	}
-	for (int i = 0; i < r.m - 1; i++) {
-		for (int j = 0; j < r.n - 1; j++) {
-			tmp.a[j][i] = temp[(r.n - 1)*i + j];
+	else {
+		Matrix tmp(m - 1, n - 1);
+		int k = 0, l = 0;
+		for (int i = 0; i < m; i++) {
+			if (i != z) {
+				for (int j = 0; j < n; j++) {
+					if (j != x) {
+						tmp.a[l][k % (n - 1)] = a[i][j];
+						k++;
+					}
+				}
+				l++;
+			}
 		}
+		if ((z + x) % 2) {
+			return -tmp.det();
+		}
+		else return tmp.det();
 	}
-	delete[] temp;
-	if ((a + b) % 2) {
-		return -tmp.det();
-	}
-	else return tmp.det();
 }
 
 Matrix Matrix::rvrse() {
 	Matrix res(m, n);
 	double detr = this->det();
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			res.a[j][i] = alt(*this, i, j) / detr;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				res.a[j][i] = this->alt(i, j) / detr;
+			}
 		}
-	}
 	return res;
 };
