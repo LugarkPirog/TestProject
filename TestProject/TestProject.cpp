@@ -1,7 +1,7 @@
 // TestProject.cpp: определяет точку входа для консольного приложения.
 //
 #include "stdafx.h"
-#include "matrixCalc.cpp"
+#include "mcl.h"
 using namespace std;
 
 double avg(int *a);
@@ -117,6 +117,15 @@ int main()
 				cout << "div - division of two matrices" << endl;
 				cout << "det - calculating the determinant" << endl;
 				cout << "rev - finding the reverse matrix" << endl;
+			}
+			else if (tmp == "lr") {
+				int n, m;
+				cout << "Enter the number of parametres: ";
+				cin >> n;
+				cout << "Enter the number of experiments: ";
+				cin >> m;
+				Matrix all(m, n);
+
 			}
 		};
 	}

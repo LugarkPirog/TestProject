@@ -27,8 +27,8 @@
     <ClInclude Include="Makefile">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="matrixCalc.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClInclude Include="mcl.h">
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
